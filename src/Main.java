@@ -1,28 +1,50 @@
-class Main {
-    public static void main(String[] args) {
-        boolean isGreenLight = false;
+public class Main {
 
-        int speedOfPlayer1 = 5;
-        int speedOfPlayer2 = 0;
-        int speedOfPlayer3 = 2;
+    public static boolean trafficGreenLight = false; // объявляется свет светофора
 
-        int nOfPlayers = 0;
+    public static void printDelim(String player) {  // выводится номер игрока
+        System.out.println("---------------------------------");
+        System.out.println(player);
+    }
 
-        if (speedOfPlayer1 > 0) {
-            nOfPlayers = (nOfPlayers + 1);
-        }
-        if (speedOfPlayer2 > 0) {
-            nOfPlayers = (nOfPlayers + 1);
-        }
-        if (speedOfPlayer3 > 0) {
-            nOfPlayers = (nOfPlayers + 1);
-        }
-        if (isGreenLight == false) {
-            System.out.println("Выбыло игроков: " + nOfPlayers);
+    public static int moves(int speedPlayer) { // расчет одного из трех результатов игры
+        int out;
+        if (trafficGreenLight == true) {
+            out = 1; //"остается в игре: светофор зеленый";
         } else {
-            System.out.println("Выбывших нет");
+            if (speedPlayer > 0) {
+                out = 2; //"выбывает: двигался на красный светофор";
+            } else {
+                out = 3; //"остается в игре: не двигался при красном светофоре";
+            }
         }
+        return out;
+    }
 
+    public static void printGameResult(int out) { //вывод на экран расшифровки результата
+        if (out == 1) {
+            System.out.println("Зеленый свет. Остается в игре");
+        }
+        if (out == 2) {
+            System.out.println("Выбывает: двигался на красный светофор");
+        }
+        if (out == 3) {
+            System.out.println("Остается в игре: не двигался при красном светофоре");
+        }
+    }
+
+    public static void main(String[] args) {
+        printDelim("Игрок 1");
+        int out = moves(5);
+        printGameResult(out);
+
+        printDelim("Игрок 2");
+        out = moves(0);
+        printGameResult(out);
+
+        printDelim("Игрок 3");
+        out = moves(2);
+        printGameResult(out);
 
     }
 }

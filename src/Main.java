@@ -1,28 +1,26 @@
-class Main {
-    public static void main(String[] args) {
-        boolean isGreenLight = false;
+import my.first.code.Game;
 
-        int speedOfPlayer1 = 5;
-        int speedOfPlayer2 = 0;
-        int speedOfPlayer3 = 2;
+import java.util.Arrays;
 
-        int nOfPlayers = 0;
+public class Main {
 
-        if (speedOfPlayer1 > 0) {
-            nOfPlayers = (nOfPlayers + 1);
-        }
-        if (speedOfPlayer2 > 0) {
-            nOfPlayers = (nOfPlayers + 1);
-        }
-        if (speedOfPlayer3 > 0) {
-            nOfPlayers = (nOfPlayers + 1);
-        }
-        if (isGreenLight == false) {
-            System.out.println("Выбыло игроков: " + nOfPlayers);
-        } else {
-            System.out.println("Выбывших нет");
-        }
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("Start Game");
 
+        int[] speed = {5, 0, 2};
+
+        Game.printDelim("Количество выбывающих");
+        int quantityLosers = Game.moves(speed);
+        System.out.println(quantityLosers);
+
+        Game.printDelim("Скорости выбывающих");
+        int[] quantitySpeedLosers = Game.losers(speed);
+        System.out.println(Arrays.toString(quantitySpeedLosers));
+
+        Game.printDelim("Скорости победителей");
+        int[] quantitySpeedWinners = Game.winners(speed);
+        System.out.println(Arrays.toString(quantitySpeedWinners));
 
     }
 }
+
